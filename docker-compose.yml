@@ -1,0 +1,47 @@
+services:
+  db:
+    container_name: postgres
+    image: postgres:latest
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    networks:
+      - appshare_network
+  adminer:
+    container_name: db_ui
+    image: adminer:latest
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    networks:
+      - appshare_network
+  
+  # server:
+  #   container_name: appshare_backend
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   develop:
+  #     watch:
+  #       - action: sync
+  #         path: ./
+  #         target: ./app
+  #         ignore:
+  #           - node_modules
+  #       - action: rebuild
+  #         path: package.json
+  #   depends_on:
+  #     - db
+  #   ports:
+  #     - "3000:3000"
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - appshare_network
+
+networks:
+  appshare_network:
+    name: appshare_network
+    
