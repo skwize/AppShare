@@ -1,8 +1,7 @@
-import { IsArray, IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 import { Dto } from "src/lib/dto/Dto";
 
-
-export class CreateAppDto extends Dto<CreateAppDto> {
+export class ChangeAppDto extends Dto<ChangeAppDto> {
 
     @IsNotEmpty()
     @IsString()
@@ -16,16 +15,9 @@ export class CreateAppDto extends Dto<CreateAppDto> {
 
     @IsNotEmpty()
     @IsString()
-    type: string;
+    appTypeName: string;
 
     @IsNotEmpty()
     @IsString()
-    ownerId: string;
-
-    @IsArray()
-    issues: string[];
-
-    @IsString()
-    link?: string;
-
+    link: string;
 }

@@ -35,7 +35,7 @@ model App {
   appTypeName String
   owner User @relation(fields: [ownerId], references: [id])
   ownerId String
-  link String
+  link String?
   issues Issue[]
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
@@ -55,4 +55,5 @@ model Issue {
   appId String
   sender User @relation(fields: [senderId], references: [id])
   senderId String
+  solved Boolean @default(false)
 }
